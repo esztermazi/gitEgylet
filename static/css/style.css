@@ -12,7 +12,7 @@ h1 {
     background-image: -webkit-gradient(linear,  left top,  left bottom,
     color-stop(0.00, red),
     color-stop(16%, orange),
-    color-stop(32%, yellow),rgat
+    color-stop(32%, yellow),
     color-stop(48%, green),
     color-stop(60%, blue),
     color-stop(76%, indigo),
@@ -186,9 +186,25 @@ td {
 
 button{
     text-align: center;
-    padding: 15px 32px;
     font-size: 30px;
+    padding: 10gitgitgipx;
+    border-radius: 50%;
+    border-color: black;
+    font-weight: bold;
+    color: #9C1A1C;
+    background-color: black;
 }
+
+
+button:hover {
+    color: darkorange;
+}
+
+
+button:active {
+    color: seagreen;
+}
+
 
 
 footer {
