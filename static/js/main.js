@@ -1,3 +1,12 @@
+function generateGoal(){
+    let goalCells = document.getElementsByClassName('goal-cell')
+    let colours = ["red", "blue", "yellow", "orange", "green", "violet"]
+    for (goalCell of goalCells) {
+        goalCell.classList.add(colours[Math.floor(Math.random() * 6)]);
+    }
+}
+
+
 function guessRow(event) {
     console.log("play pressed");
 }
@@ -42,6 +51,7 @@ function addEventListenerToGuestCells() {
 
 
 function main() {
+    generateGoal();
     addEventLinstenerToPlayBtn();
     addEventListenerToGuestCells();
 }
