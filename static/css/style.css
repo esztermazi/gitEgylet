@@ -108,10 +108,47 @@ a {
 }
 
 
+.empty{
+    background-color: #485F6E;
+}
+
+
+.red{
+    background-color: #9C1A1C;
+}
+
+
+.blue{
+    background-color: blue;
+}
+
+
+.yellow{
+    background-color: yellow;
+}
+
+
+.orange{
+    background-color: darkorange;
+}
+
+
+.green{
+    background-color: green;
+}
+
+
+.violet{
+    background-color: darkviolet;
+}
+
+
 td {
     border-style: solid;
     border-color: #485F6E;
     border-width: thin;
+    width: 40px;
+    height: 40px;
 }
 
 
