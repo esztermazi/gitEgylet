@@ -45,9 +45,12 @@ function guessRow(event) {
         }
     }
     for(let checkRowIndex=0;checkRowIndex < guessRows.length;checkRowIndex++) {
-        if (guessRows[checkRowIndex].classList.contains("current-row")){
+        if (checkRowIndex === 11) {
+            break;
+        }
+        if (guessRows[checkRowIndex].classList.contains("current-row")) {
             guessRows[checkRowIndex].classList.remove("current-row");
-            guessRows[checkRowIndex+1].classList.add("current-row");
+            guessRows[checkRowIndex + 1].classList.add("current-row");
             break;
         }
     }

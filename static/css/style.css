@@ -1,6 +1,8 @@
 body {
     font-family: Chilanka;
     text-align: center;
+    background-image: url('/static/images/table.jpg');
+    background-size: cover;
 }
 
 
@@ -10,7 +12,7 @@ h1 {
     background-image: -webkit-gradient(linear,  left top,  left bottom,
     color-stop(0.00, red),
     color-stop(16%, orange),
-    color-stop(32%, yellow),
+    color-stop(32%, yellow),rgat
     color-stop(48%, green),
     color-stop(60%, blue),
     color-stop(76%, indigo),
@@ -115,31 +117,37 @@ a {
 
 .red{
     background-color: #9C1A1C;
+    border-radius: 50%;
 }
 
 
 .blue{
     background-color: blue;
+    border-radius: 50%;
 }
 
 
 .yellow{
     background-color: yellow;
+    border-radius: 50%;
 }
 
 
 .orange{
     background-color: darkorange;
+    border-radius: 50%;
 }
 
 
 .green{
     background-color: green;
+    border-radius: 50%;
 }
 
 
 .violet{
     background-color: darkviolet;
+    border-radius: 50%;
 }
 
 
@@ -165,11 +173,14 @@ td {
 
 .white-opinion{
     background-color: white;
+    border-radius: 50%;
 }
 
 
 .black-opinion{
     background-color: black;
+    border-radius: 50%;
+
 }
 
 
