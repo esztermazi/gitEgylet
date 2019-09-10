@@ -1,14 +1,46 @@
 function generateGoal(){
-    let goalCells = document.getElementsByClassName('goal-cell')
-    let colours = ["red", "blue", "yellow", "orange", "green", "violet"]
-    for (goalCell of goalCells) {
-        goalCell.classList.add(colours[Math.floor(Math.random() * 6)]);
+    let goalCells = document.getElementsByClassName('goal-cell');
+    let colours = ["red", "blue", "yellow", "orange", "green", "violet"];
+    for (goalCell of goalCells){
+        let randomColour = colours[Math.floor(Math.random() * 6)];
+        goalCell.classList.add(randomColour);
+        goalCell.dataset.goalValue=randomColour;
     }
 }
 
 
 function guessRow(event) {
-    console.log("play pressed");
+    let guessGoals = document.getElementsByClassName('goal-cell');
+    let guessRows = document.getElementsByClassName('guess-row');
+    let guessOpinions = document.getElementsByClassName('opinion');
+    for (guessRow of guessRows){
+        let guessCells = guessRow.getElementsByClassName('guess-cell');
+        for (let index=0; index < guessCells.length;index++) {
+            let currentColour = guessCells[index].dataset.colourValue;
+            let goalColour = guessGoals[index].dataset.goalValue;
+            let currentOpinion = guessOpinions[index];
+            if(currentColour === goalColour){
+                currentOpinion.classList.remove("empty-opinion");
+                currentOpinion.classList.add("black-opinion");
+                guessGoals[parseInt(index)].classList.add("used");
+            }
+        }
+        for (let index=0; index < guessCells.length;index++){
+            let currentColour = guessCells[index].dataset.colourValue;
+            let currentOpinion = guessOpinions[index];
+            if(!currentOpinion.classList.contains("black-opinion")) {
+                for (let goal_index=0; goal_index < guessGoals.length;goal_index++){
+                    if (!guessGoals[goal_index].classList.contains("used")) {
+                        if(currentColour === guessGoals[goal_index].goalValue){
+                            currentOpinion.classList.remove("empty-opinion");
+                            currentOpinion.classList.add("white-opinion");
+                            guessGoals[goal_index].classList.add("used");
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 
@@ -17,15 +49,19 @@ function chooseColour(event) {
     if (event.target.classList.contains("empty")){
         event.target.classList.remove("empty");
         event.target.classList.add("red");
+        event.target.dataset.colourValue="red";
+
     } else {
         for(let index = 0; index<colours.length;index++){
             if(event.target.classList.contains("violet")){
                 event.target.classList.remove("violet");
                 event.target.classList.add("red");
+                event.target.dataset.colourValue="red";
             } else {
                 if(event.target.classList.contains(colours[index])){
                     event.target.classList.remove(colours[index]);
                     event.target.classList.add(colours[index+1]);
+                    event.target.dataset.colourValue=colours[index+1];
                     break;
                 }
             }
@@ -34,11 +70,9 @@ function chooseColour(event) {
 }
 
 
-function addEventLinstenerToPlayBtn(){
-    let playBtns = document.getElementsByClassName('play-button');
-    for (playBtn of playBtns) {
-        playBtn.addEventListener('click', guessRow);
-    }
+function addEventListenerToPlayBtn(){
+    let playBtn = document.querySelector('button');
+    playBtn.addEventListener('click', guessRow);
 }
 
 
@@ -52,7 +86,7 @@ function addEventListenerToGuestCells() {
 
 function main() {
     generateGoal();
-    addEventLinstenerToPlayBtn();
+    addEventListenerToPlayBtn();
     addEventListenerToGuestCells();
 }
 main();

@@ -8,113 +8,118 @@
 
 
 {% block content %}
-<table class="container" id="player_board">
-    <tbody>
-        <tr>
-            <td class="play-button"><button>|></button></td>
-            <td class="first-color empty guess-cell"></td>
-            <td class="second-color empty guess-cell"></td>
-            <td class="third-color empty guess-cell"></td>
-            <td class="fourth-color empty guess-cell"></td>
-            <td class="results"></td>
-        </tr>
-        <tr>
-            <td class="play-button"><button>|></button></td>
-            <td class="first-color empty guess-cell"></td>
-            <td class="second-color empty guess-cell"></td>
-            <td class="third-color empty guess-cell"></td>
-            <td class="fourth-color empty guess-cell"></td>
-            <td class="results"></td>
-        </tr>
-        <tr>
-            <td class="play-button"><button>|></button></td>
-            <td class="first-color empty guess-cell"></td>
-            <td class="second-color empty guess-cell"></td>
-            <td class="third-color empty guess-cell"></td>
-            <td class="fourth-color empty guess-cell"></td>
-            <td class="results"></td>
-        </tr>
-        <tr>
-            <td class="play-button"><button>|></button></td>
-            <td class="first-color empty guess-cell"></td>
-            <td class="second-color empty guess-cell"></td>
-            <td class="third-color empty guess-cell"></td>
-            <td class="fourth-color empty guess-cell"></td>
-            <td class="results"></td>
-        </tr>
-        <tr>
-            <td class="play-button"><button>|></button></td>
-            <td class="first-color empty guess-cell"></td>
-            <td class="second-color empty guess-cell"></td>
-            <td class="third-color empty guess-cell"></td>
-            <td class="fourth-color empty guess-cell"></td>
-            <td class="results"></td>
-        </tr>
-        <tr>
-            <td class="play-button"><button>|></button></td>
-            <td class="first-color empty guess-cell"></td>
-            <td class="second-color empty guess-cell"></td>
-            <td class="third-color empty guess-cell"></td>
-            <td class="fourth-color empty guess-cell"></td>
-            <td class="results"></td>
-        </tr>
-        <tr>
-            <td class="play-button"><button>|></button></td>
-            <td class="first-color empty guess-cell"></td>
-            <td class="second-color empty guess-cell"></td>
-            <td class="third-color empty guess-cell"></td>
-            <td class="fourth-color empty guess-cell"></td>
-            <td class="results"></td>
-        </tr>
-        <tr>
-            <td class="play-button"><button>|></button></td>
-            <td class="first-color empty guess-cell"></td>
-            <td class="second-color empty guess-cell"></td>
-            <td class="third-color empty guess-cell"></td>
-            <td class="fourth-color empty guess-cell"></td>
-            <td class="results"></td>
-        </tr>
-        <tr>
-            <td class="play-button"><button>|></button></td>
-            <td class="first-color empty guess-cell"></td>
-            <td class="second-color empty guess-cell"></td>
-            <td class="third-color empty guess-cell"></td>
-            <td class="fourth-color empty guess-cell"></td>
-            <td class="results"></td>
-        </tr>
-        <tr>
-            <td class="play-button"><button>|></button></td>
-            <td class="first-color empty guess-cell"></td>
-            <td class="second-color empty guess-cell"></td>
-            <td class="third-color empty guess-cell"></td>
-            <td class="fourth-color empty guess-cell"></td>
-            <td class="results"></td>
-        </tr>
-        <tr>
-            <td class="play-button"><button>|></button></td>
-            <td class="first-color empty guess-cell"></td>
-            <td class="second-color empty guess-cell"></td>
-            <td class="third-color empty guess-cell"></td>
-            <td class="fourth-color empty guess-cell"></td>
-            <td class="results"></td>
-        </tr>
-        <tr>
-            <td class="play-button"><button>|></button></td>
-            <td class="first-color empty guess-cell"></td>
-            <td class="second-color empty guess-cell"></td>
-            <td class="third-color empty guess-cell"></td>
-            <td class="fourth-color empty guess-cell"></td>
-            <td class="results"></td>
-        </tr>
-    </tbody>
-</table><br>
+<div class = "container">
+    <table id="player_board">
+        <tbody>
+            <tr class="guess-row" data-row-value="0">
+                <td class="empty guess-cell" data-colour-value="empty" data-col-value="0"></td>
+                <td class="empty guess-cell" data-colour-value="empty" data-col-value="1"></td>
+                <td class="empty guess-cell" data-colour-value="empty" data-col-value="2"></td>
+                <td class="empty guess-cell" data-colour-value="empty" data-col-value="3"></td>
+                <td class="results">
+                    <table>
+                        <tr>
+                            <td class="empty-opinion opinion " data-col-value="0"></td>
+                            <td class="empty-opinion opinion" data-col-value="1"></td>
+                        </tr>
+                        <tr>
+                            <td class="empty-opinion opinion" data-col-value="2"></td>
+                            <td class="empty-opinion opinion" data-col-value="3"></td>
+                        </tr>
+                    </table>
+                </td>
+
+            </tr>
+            <tr class="guess-row">
+                <td class="first-color empty guess-cell"></td>
+                <td class="second-color empty guess-cell"></td>
+                <td class="third-color empty guess-cell"></td>
+                <td class="fourth-color empty guess-cell"></td>
+                <td class="results"></td>
+            </tr>
+            <tr class="guess-row">
+                <td class="first-color empty guess-cell"></td>
+                <td class="second-color empty guess-cell"></td>
+                <td class="third-color empty guess-cell"></td>
+                <td class="fourth-color empty guess-cell"></td>
+                <td class="results"></td>
+            </tr>
+            <tr class="guess-row">
+                <td class="first-color empty guess-cell"></td>
+                <td class="second-color empty guess-cell"></td>
+                <td class="third-color empty guess-cell"></td>
+                <td class="fourth-color empty guess-cell"></td>
+                <td class="results"></td>
+            </tr>
+            <tr class="guess-row">
+                <td class="first-color empty guess-cell"></td>
+                <td class="second-color empty guess-cell"></td>
+                <td class="third-color empty guess-cell"></td>
+                <td class="fourth-color empty guess-cell"></td>
+                <td class="results"></td>
+            </tr>
+            <tr class="guess-row">
+                <td class="first-color empty guess-cell"></td>
+                <td class="second-color empty guess-cell"></td>
+                <td class="third-color empty guess-cell"></td>
+                <td class="fourth-color empty guess-cell"></td>
+                <td class="results"></td>
+            </tr>
+            <tr class="guess-row">
+                <td class="first-color empty guess-cell"></td>
+                <td class="second-color empty guess-cell"></td>
+                <td class="third-color empty guess-cell"></td>
+                <td class="fourth-color empty guess-cell"></td>
+                <td class="results"></td>
+            </tr>
+            <tr class="guess-row">
+                <td class="first-color empty guess-cell"></td>
+                <td class="second-color empty guess-cell"></td>
+                <td class="third-color empty guess-cell"></td>
+                <td class="fourth-color empty guess-cell"></td>
+                <td class="results"></td>
+            </tr>
+            <tr class="guess-row">
+                <td class="first-color empty guess-cell"></td>
+                <td class="second-color empty guess-cell"></td>
+                <td class="third-color empty guess-cell"></td>
+                <td class="fourth-color empty guess-cell"></td>
+                <td class="results"></td>
+            </tr>
+            <tr class="guess-row">
+                <td class="first-color empty guess-cell"></td>
+                <td class="second-color empty guess-cell"></td>
+                <td class="third-color empty guess-cell"></td>
+                <td class="fourth-color empty guess-cell"></td>
+                <td class="results"></td>
+            </tr>
+            <tr class="guess-row">
+                <td class="first-color empty guess-cell"></td>
+                <td class="second-color empty guess-cell"></td>
+                <td class="third-color empty guess-cell"></td>
+                <td class="fourth-color empty guess-cell"></td>
+                <td class="results"></td>
+            </tr>
+            <tr class="guess-row">
+                <td class="first-color empty guess-cell"></td>
+                <td class="second-color empty guess-cell"></td>
+                <td class="third-color empty guess-cell"></td>
+                <td class="fourth-color empty guess-cell"></td>
+                <td class="results"></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <button>|></button>
+</div>
+<br>
 
 <table class="container">
     <tr>
-        <td class="first-color goal-cell"></td>
-        <td class="second-color goal-cell"></td>
-        <td class="third-color goal-cell"></td>
-        <td class="fourth-color goal-cell"></td>
+        <td class="goal-cell" data-goal-value="empty" data-col-value="0"></td>
+        <td class="goal-cell" data-goal-value="empty" data-col-value="1"></td>
+        <td class="goal-cell" data-goal-value="empty" data-col-value="2"></td>
+        <td class="goal-cell" data-goal-value="empty" data-col-value="3"></td>
     </tr>
 </table>
 {% endblock %}

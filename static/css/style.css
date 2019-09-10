@@ -152,6 +152,34 @@ td {
 }
 
 
+.opinion {
+    width: 15px;
+    height: 15px;
+}
+
+
+.empty-opinion{
+    background-color: #485F6E;
+}
+
+
+.white-opinion{
+    background-color: white;
+}
+
+
+.black-opinion{
+    background-color: black;
+}
+
+
+button{
+    text-align: center;
+    padding: 15px 32px;
+    font-size: 30px;
+}
+
+
 footer {
     position:absolute;
     bottom:0;
