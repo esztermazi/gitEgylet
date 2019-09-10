@@ -187,9 +187,9 @@ td {
 button{
     text-align: center;
     font-size: 30px;
-    padding: 10gitgitgipx;
+    padding: 8px 10px;
     border-radius: 50%;
-    border-color: black;
+    border-color: #9C1A1C;
     font-weight: bold;
     color: #9C1A1C;
     background-color: black;
@@ -198,13 +198,14 @@ button{
 
 button:hover {
     color: darkorange;
+    border-color: darkorange;
 }
 
 
 button:active {
     color: seagreen;
+    border-color: seagreen;
 }
-
 
 
 footer {
