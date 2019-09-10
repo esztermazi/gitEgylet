@@ -12,8 +12,8 @@ function generateGoal(){
 function guessRow(event) {
     let guessGoals = document.getElementsByClassName('goal-cell');
     let guessRows = document.getElementsByClassName('guess-row');
-    let guessOpinions = document.getElementsByClassName('opinion');
     for (guessRow of guessRows){
+        let guessOpinions = guessRow.getElementsByClassName('opinion');
         let guessCells = guessRow.getElementsByClassName('guess-cell');
         for (let index=0; index < guessCells.length;index++) {
             let currentColour = guessCells[index].dataset.colourValue;
@@ -31,7 +31,7 @@ function guessRow(event) {
             if(!currentOpinion.classList.contains("black-opinion")) {
                 for (let goal_index=0; goal_index < guessGoals.length;goal_index++){
                     if (!guessGoals[goal_index].classList.contains("used")) {
-                        if(currentColour === guessGoals[goal_index].goalValue){
+                        if(currentColour === guessGoals[goal_index].dataset.goalValue){
                             currentOpinion.classList.remove("empty-opinion");
                             currentOpinion.classList.add("white-opinion");
                             guessGoals[goal_index].classList.add("used");
@@ -39,6 +39,9 @@ function guessRow(event) {
                     }
                 }
             }
+        }
+        for (guessGoal of guessGoals){
+            guessGoal.classList.remove("used");
         }
     }
 }
