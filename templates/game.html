@@ -1,10 +1,127 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'layout.html' %}
 
-</body>
-</html>
+{% block title %}Game{% endblock %}
+
+{% block head %}
+<script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+{% endblock %}
+
+
+{% block content %}
+<table class="container" id="player_board">
+    <tbody>
+        <tr>
+            <td class="play-button"><button>|></button></td>
+            <td class="first-color"></td>
+            <td class="second-color"></td>
+            <td class="third-color"></td>
+            <td class="fourth-color"></td>
+            <td class="results"></td>
+        </tr>
+        <tr>
+            <td class="play-button"><button>|></button></td>
+            <td class="first-color"></td>
+            <td class="second-color"></td>
+            <td class="third-color"></td>
+            <td class="fourth-color"></td>
+            <td class="results"></td>
+        </tr>
+        <tr>
+            <td class="play-button"><button>|></button></td>
+            <td class="first-color"></td>
+            <td class="second-color"></td>
+            <td class="third-color"></td>
+            <td class="fourth-color"></td>
+            <td class="results"></td>
+        </tr>
+        <tr>
+            <td class="play-button"><button>|></button></td>
+            <td class="first-color"></td>
+            <td class="second-color"></td>
+            <td class="third-color"></td>
+            <td class="fourth-color"></td>
+            <td class="results"></td>
+        </tr>
+        <tr>
+            <td class="play-button"><button>|></button></td>
+            <td class="first-color"></td>
+            <td class="second-color"></td>
+            <td class="third-color"></td>
+            <td class="fourth-color"></td>
+            <td class="results"></td>
+        </tr>
+        <tr>
+            <td class="play-button"><button>|></button></td>
+            <td class="first-color"></td>
+            <td class="second-color"></td>
+            <td class="third-color"></td>
+            <td class="fourth-color"></td>
+            <td class="results"></td>
+        </tr>
+        <tr>
+            <td class="play-button"><button>|></button></td>
+            <td class="first-color"></td>
+            <td class="second-color"></td>
+            <td class="third-color"></td>
+            <td class="fourth-color"></td>
+            <td class="results"></td>
+        </tr>
+        <tr>
+            <td class="play-button"><button>|></button></td>
+            <td class="first-color"></td>
+            <td class="second-color"></td>
+            <td class="third-color"></td>
+            <td class="fourth-color"></td>
+            <td class="results"></td>
+        </tr>
+        <tr>
+            <td class="play-button"><button>|></button></td>
+            <td class="first-color"></td>
+            <td class="second-color"></td>
+            <td class="third-color"></td>
+            <td class="fourth-color"></td>
+            <td class="results"></td>
+        </tr>
+        <tr>
+            <td class="play-button"><button>|></button></td>
+            <td class="first-color"></td>
+            <td class="second-color"></td>
+            <td class="third-color"></td>
+            <td class="fourth-color"></td>
+            <td class="results"></td>
+        </tr>
+        <tr>
+            <td class="play-button"><button>|></button></td>
+            <td class="first-color"></td>
+            <td class="second-color"></td>
+            <td class="third-color"></td>
+            <td class="fourth-color"></td>
+            <td class="results"></td>
+        </tr>
+        <tr>
+            <td class="play-button"><button>|></button></td>
+            <td class="first-color"></td>
+            <td class="second-color"></td>
+            <td class="third-color"></td>
+            <td class="fourth-color"></td>
+            <td class="results"></td>
+        </tr>
+    </tbody>
+</table><br>
+
+
+<table class="container" id="result_board">
+    <tr>
+        <td class="first-color"></td>
+        <td class="second-color"></td>
+        <td class="third-color"></td>
+        <td class="fourth-color"></td>
+        <td class="results"></td>
+    </tr>
+</table>
+{% endblock %}
+
+
+{% block footer %}
+<a class ="back_button" href="{{ url_for('index')}}">Back to main menu</a>
+{% endblock %}
