@@ -44,28 +44,37 @@ function guessRow(event) {
             guessGoal.classList.remove("used");
         }
     }
+    for(let checkRowIndex=0;checkRowIndex < guessRows.length;checkRowIndex++) {
+        if (guessRows[checkRowIndex].classList.contains("current-row")){
+            guessRows[checkRowIndex].classList.remove("current-row");
+            guessRows[checkRowIndex+1].classList.add("current-row");
+            break;
+        }
+    }
 }
 
 
 function chooseColour(event) {
     let colours = ["red", "blue", "yellow", "orange", "green", "violet"];
-    if (event.target.classList.contains("empty")){
-        event.target.classList.remove("empty");
-        event.target.classList.add("red");
-        event.target.dataset.colourValue="red";
+    if(event.target.parentElement.classList.contains("current-row")) {
+        if (event.target.classList.contains("empty")) {
+            event.target.classList.remove("empty");
+            event.target.classList.add("red");
+            event.target.dataset.colourValue = "red";
 
-    } else {
-        for(let index = 0; index<colours.length;index++){
-            if(event.target.classList.contains("violet")){
-                event.target.classList.remove("violet");
-                event.target.classList.add("red");
-                event.target.dataset.colourValue="red";
-            } else {
-                if(event.target.classList.contains(colours[index])){
-                    event.target.classList.remove(colours[index]);
-                    event.target.classList.add(colours[index+1]);
-                    event.target.dataset.colourValue=colours[index+1];
-                    break;
+        } else {
+            for (let index = 0; index < colours.length; index++) {
+                if (event.target.classList.contains("violet")) {
+                    event.target.classList.remove("violet");
+                    event.target.classList.add("red");
+                    event.target.dataset.colourValue = "red";
+                } else {
+                    if (event.target.classList.contains(colours[index])) {
+                        event.target.classList.remove(colours[index]);
+                        event.target.classList.add(colours[index + 1]);
+                        event.target.dataset.colourValue = colours[index + 1];
+                        break;
+                    }
                 }
             }
         }
@@ -88,6 +97,7 @@ function addEventListenerToGuestCells() {
 
 
 function main() {
+    let rowIndex = parseInt(document.querySelector('tbody').dataset.actualRow);
     generateGoal();
     addEventListenerToPlayBtn();
     addEventListenerToGuestCells();
