@@ -18,6 +18,7 @@ function checkWin(guessOpinions) {
     }
     if (counter===4){
         alert("You Won!");
+        document.getElementById("goals").classList.remove("hidden");
         return true;
     }
     return false;
@@ -70,6 +71,7 @@ function guessRow(event) {
     for (let checkRowIndex = 0; checkRowIndex < guessRows.length; checkRowIndex++) {
         if (checkRowIndex === 11) {
             alert("you lose! :(");
+            document.getElementById("goals").classList.remove("hidden");
             guessRows[checkRowIndex].classList.remove("current-row");
             break;
         }

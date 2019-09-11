@@ -208,6 +208,11 @@ button:active {
 }
 
 
+.hidden{
+    visibility: hidden;
+}
+
+
 footer {
     position:fixed;
     bottom:10px;
