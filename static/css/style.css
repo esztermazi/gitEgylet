@@ -34,7 +34,7 @@ h3 {
 
 a {
     text-decoration: none;
-    border-style: outset;
+    border-style: solid;
     border-color: black;
     border-radius: 50%;
     border-width: thin;
@@ -209,7 +209,8 @@ td {
 
 
 #retry-btn {
-    border-style: outset;
+    font-family: Chilanka;
+    border-style: solid;
     border-color: black;
     border-radius: 50%;
     border-width: thin;
@@ -219,6 +220,13 @@ td {
     padding: 20px;
     box-shadow: -11px 12px 7px -8px rgba(0,0,0,0.75);
     background-color: burlywood;
+}
+
+#retry-btn:hover {
+    font-weight: bold;
+    background-color: black;
+    color: burlywood;;
+
 }
 
 
