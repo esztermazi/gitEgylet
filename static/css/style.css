@@ -122,7 +122,7 @@ a, #retry-btn {
 }
 
 
-.guess-cell{
+.guess-cell, .goal-cell{
     border-radius: 50%;
 }
 
