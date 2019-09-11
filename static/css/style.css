@@ -184,7 +184,7 @@ td {
 }
 
 
-button{
+#play-btn{
     text-align: center;
     font-size: 30px;
     padding: 8px 10px;
@@ -196,15 +196,29 @@ button{
 }
 
 
-button:hover {
+#play-btn:hover {
     color: darkorange;
     border-color: darkorange;
 }
 
 
-button:active {
+#play-btn:active {
     color: seagreen;
     border-color: seagreen;
+}
+
+
+#retry-btn {
+    border-style: outset;
+    border-color: black;
+    border-radius: 50%;
+    border-width: thin;
+    color: black;
+    display: inline-block;
+    margin: 10px;
+    padding: 20px;
+    box-shadow: -11px 12px 7px -8px rgba(0,0,0,0.75);
+    background-color: burlywood;
 }
 
 

@@ -113,7 +113,7 @@ function chooseColour(event) {
 
 
 function addEventListenerToPlayBtn(){
-    let playBtn = document.querySelector('button');
+    let playBtn = document.querySelector('#play-btn');
     playBtn.addEventListener('click', guessRow);
 }
 
