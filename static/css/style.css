@@ -41,13 +41,15 @@ a {
     color: black;
     display: inline-block;
     margin: 10px;
-    padding: 20px;
     box-shadow: -11px 12px 7px -8px rgba(0,0,0,0.75);
+    padding: 20px;
 }
 
 
 #start_button {
     background-color: mediumseagreen;
+    padding-left: 17px;
+    padding-right: 17px;
 }
 
 
@@ -60,6 +62,8 @@ a {
 
 #score_button {
     background-color: darkorange;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 
@@ -82,12 +86,23 @@ a {
 }
 
 
-#quit_button {
+#quit-btn {
     background-color: #9C1A1C;
+    font-family: Chilanka;
+    border-style: solid;
+    border-color: black;
+    border-radius: 50%;
+    border-width: thin;
+    color: black;
+    display: inline-block;
+    margin: 10px;
+    padding: 20px;
+    box-shadow: -11px 12px 7px -8px rgba(0,0,0,0.75);
+
 }
 
 
-#quit_button:hover {
+#quit-btn:hover {
     font-weight: bold;
     color: #9C1A1C;
     background-color: black;

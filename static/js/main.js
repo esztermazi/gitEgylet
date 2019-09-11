@@ -166,8 +166,8 @@ function addEventListenerToGuestCells() {
 
 
 function addEventListenerToRetryBtn() {
-    let playBtn = document.querySelector('#retry-btn');
-    playBtn.addEventListener('click', newGame);
+    let retryBtn = document.querySelector('#retry-btn');
+    retryBtn.addEventListener('click', newGame);
 }
 
 
@@ -178,5 +178,7 @@ function main() {
     addEventListenerToGuestCells();
     addEventListenerToRetryBtn();
 }
+
+
 main();
 

@@ -2,7 +2,10 @@
 
 {% block title %}Main menu{% endblock %}
 
-{% block head %} {% endblock %}
+{% block head %}
+<script src="{{ url_for('static', filename='js/menu.js') }}" defer></script>
+{% endblock %}
+
 
 {% block content %}
 <div class="container">
@@ -10,6 +13,6 @@
     <h3>Main Menu</h3>
     <a id="start_button" href="{{ url_for('start_game') }}">Start</a><br>
     <a id="score_button" href="{{ url_for('high_score') }}">Score</a><br>
-    <a id="quit_button" href="{{ url_for('high_score') }}">Quit</a><br>
+    <button id="quit-btn">Quit</button>
 </div>
 {% endblock %}
