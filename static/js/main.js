@@ -9,6 +9,21 @@ function generateGoal(){
 }
 
 
+function checkWin(guessOpinions) {
+    counter = 0;
+    for (guessOpinion of guessOpinions){
+        if(guessOpinion.classList.contains("black-opinion")){
+            counter++;
+        }
+    }
+    if (counter===4){
+        alert("You Won!");
+        return true;
+    }
+    return false;
+}
+
+
 function guessRow(event) {
     let guessGoals = document.getElementsByClassName('goal-cell');
     let guessRows = document.getElementsByClassName('guess-row');
@@ -43,9 +58,18 @@ function guessRow(event) {
         for (guessGoal of guessGoals){
             guessGoal.classList.remove("used");
         }
+        let isWon = checkWin(guessOpinions);
+        if (isWon){
+            for (guessRow of guessRows){
+                guessRow.classList.remove("current-row");
+            }
+            return;
+        }
     }
-    for(let checkRowIndex=0;checkRowIndex < guessRows.length;checkRowIndex++) {
+
+    for (let checkRowIndex = 0; checkRowIndex < guessRows.length; checkRowIndex++) {
         if (checkRowIndex === 11) {
+            guessRows[checkRowIndex].classList.remove("current-row");
             break;
         }
         if (guessRows[checkRowIndex].classList.contains("current-row")) {
