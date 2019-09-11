@@ -13,5 +13,7 @@ function addEventListenerToQuitBtn() {
 function main() {
     addEventListenerToQuitBtn();
 }
+
+
 main();
 

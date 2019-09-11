@@ -1,5 +1,5 @@
 function removeColors(element) {
-    let colours = ["red", "blue", "yellow", "orange", "green", "violet", "empty", "black-opinion", "white-opinion"];
+    let colours = ["red", "blue", "yellow", "orange", "green", "violet", "empty", "black", "white"];
     for (colour of colours){
         element.classList.remove(colour);
     }
@@ -21,7 +21,7 @@ function generateGoal(){
 function checkWin(guessOpinions) {
     counter = 0;
     for (guessOpinion of guessOpinions){
-        if(guessOpinion.classList.contains("black-opinion")){
+        if(guessOpinion.classList.contains("black")){
             counter++;
         }
     }
@@ -76,19 +76,19 @@ function guessRow(event) {
             let currentOpinion = guessOpinions[index];
             if(currentColour === goalColour){
                 currentOpinion.classList.remove("empty");
-                currentOpinion.classList.add("black-opinion");
+                currentOpinion.classList.add("black");
                 guessGoals[parseInt(index)].classList.add("used");
             }
         }
         for (let index=0; index < guessCells.length;index++){
             let currentColour = guessCells[index].dataset.colourValue;
             let currentOpinion = guessOpinions[index];
-            if(!currentOpinion.classList.contains("black-opinion")) {
+            if(!currentOpinion.classList.contains("black")) {
                 for (let goal_index=0; goal_index < guessGoals.length;goal_index++){
                     if (!guessGoals[goal_index].classList.contains("used")) {
                         if(currentColour === guessGoals[goal_index].dataset.goalValue){
                             currentOpinion.classList.remove("empty");
-                            currentOpinion.classList.add("white-opinion");
+                            currentOpinion.classList.add("white");
                             guessGoals[goal_index].classList.add("used");
                         }
                     }
@@ -108,7 +108,7 @@ function guessRow(event) {
     }
 
     for (let checkRowIndex = 0; checkRowIndex < guessRows.length; checkRowIndex++) {
-        if (checkRowIndex === 11) {
+        if (checkRowIndex === guessRows.lenght-1) {
             alert("you lose! :(");
             document.getElementById("goals").classList.remove("hidden");
             guessRows[checkRowIndex].classList.remove("current-row");
