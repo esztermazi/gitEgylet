@@ -2,6 +2,7 @@ function removeColors(element) {
     let colours = ["red", "blue", "yellow", "orange", "green", "violet", "empty", "black", "white"];
     for (colour of colours){
         element.classList.remove(colour);
+        element.dataset.colourValue="empty";
     }
     element.classList.add("empty");
 }
@@ -64,6 +65,31 @@ function newGame(event){
 }
 
 
+function addAllWhiteKeyPags(currentOpinion, guessGoals, currentColour){
+    if(!currentOpinion.classList.contains("black")) {
+        for (let goal_index=0; goal_index < guessGoals.length;goal_index++){
+            if (!guessGoals[goal_index].classList.contains("used")) {
+                if(isMatchingColour(currentColour, guessGoals[goal_index])){
+                    addWhiteKeyPag(currentOpinion, guessGoals[goal_index])
+                }
+            }
+        }
+    }
+}
+
+
+function isMatchingColour(currentColour,  guessGoal){
+    return currentColour === guessGoal.dataset.goalValue;
+}
+
+
+function addWhiteKeyPag(currentOpinion, guessGoal) {
+    currentOpinion.classList.remove("empty");
+    currentOpinion.classList.add("white");
+    guessGoal.classList.add("used");
+}
+
+
 function guessRow(event) {
     let guessGoals = document.getElementsByClassName('goal-cell');
     let guessRows = document.getElementsByClassName('guess-row');
@@ -83,17 +109,7 @@ function guessRow(event) {
         for (let index=0; index < guessCells.length;index++){
             let currentColour = guessCells[index].dataset.colourValue;
             let currentOpinion = guessOpinions[index];
-            if(!currentOpinion.classList.contains("black")) {
-                for (let goal_index=0; goal_index < guessGoals.length;goal_index++){
-                    if (!guessGoals[goal_index].classList.contains("used")) {
-                        if(currentColour === guessGoals[goal_index].dataset.goalValue){
-                            currentOpinion.classList.remove("empty");
-                            currentOpinion.classList.add("white");
-                            guessGoals[goal_index].classList.add("used");
-                        }
-                    }
-                }
-            }
+            addAllWhiteKeyPags(currentOpinion, guessGoals, currentColour);
         }
         for (guessGoal of guessGoals){
             guessGoal.classList.remove("used");
