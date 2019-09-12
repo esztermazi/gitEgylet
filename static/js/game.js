@@ -35,18 +35,23 @@ function checkWin(guessOpinions) {
 }
 
 
-function newGame(event){
+function removeUsedStates(){
     let guessGoals = document.getElementsByClassName('goal-cell');
-    let guessRows = document.getElementsByClassName('guess-row');
-    let guessCells = document.getElementsByClassName('guess-cell');
-    let guessOpinions = document.getElementsByClassName('opinion');
-    for(guessOpinion of guessOpinions){
-        removeColors(guessOpinion);
-    }
-    for(guessGoal of guessGoals){
+    for(let guessGoal of guessGoals) {
         guessGoal.classList.remove("used");
         removeColors(guessGoal);
     }
+}
+
+
+function newGame(event){
+    let guessRows = document.getElementsByClassName('guess-row');
+    let guessCells = document.getElementsByClassName('guess-cell');
+    let guessOpinions = document.getElementsByClassName('opinion');
+    for(let guessOpinion of guessOpinions){
+        removeColors(guessOpinion);
+    }
+    removeUsedStates();
     generateGoal();
     for (let rowIndex = 0;rowIndex < guessRows.length;rowIndex++){
         guessRows[rowIndex].classList.remove("current-row");
@@ -55,7 +60,7 @@ function newGame(event){
         }
     }
 
-    for (guessCell of guessCells){
+    for (let guessCell of guessCells){
         removeColors(guessCell);
     }
     let goalsTable = document.getElementById("goals");
@@ -64,18 +69,29 @@ function newGame(event){
     }
 }
 
+function isWhiteKeyPagNecessary(guessGoal, currentColour){
+    if(!guessGoal.classList.contains("used")){
+        return  isMatchingColour(currentColour, guessGoal);
+    }
+    return false;
+}
+
+
+function isNotBlack(currentOpinion) {
+   return !currentOpinion.classList.contains("black");
+}
+
+
 
 function addAllWhiteKeyPags(currentOpinion, guessGoals, currentColour){
-    if(!currentOpinion.classList.contains("black")) {
+    if(isNotBlack(currentOpinion)) {
         for (let goal_index=0; goal_index < guessGoals.length;goal_index++){
-            if (!guessGoals[goal_index].classList.contains("used")) {
-                if(isMatchingColour(currentColour, guessGoals[goal_index])){
-                    addWhiteKeyPag(currentOpinion, guessGoals[goal_index])
+            if (isWhiteKeyPagNecessary(guessGoals[goal_index], currentColour)){
+                    addWhiteKeyPag(currentOpinion, guessGoals[goal_index]);
                 }
             }
         }
     }
-}
 
 
 function isMatchingColour(currentColour,  guessGoal){
@@ -124,7 +140,7 @@ function guessRow(event) {
     }
 
     for (let checkRowIndex = 0; checkRowIndex < guessRows.length; checkRowIndex++) {
-        if (checkRowIndex === guessRows.lenght-1) {
+        if (checkRowIndex === guessRows.length -1) {
             alert("you lose! :(");
             document.getElementById("goals").classList.remove("hidden");
             guessRows[checkRowIndex].classList.remove("current-row");
