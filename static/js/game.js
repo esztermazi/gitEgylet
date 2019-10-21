@@ -44,29 +44,48 @@ function removeUsedStates(){
 }
 
 
-function newGame(event){
+function removeCurrentRowMarker() {
     let guessRows = document.getElementsByClassName('guess-row');
-    let guessCells = document.getElementsByClassName('guess-cell');
-    let guessOpinions = document.getElementsByClassName('opinion');
-    for(let guessOpinion of guessOpinions){
-        removeColors(guessOpinion);
-    }
-    removeUsedStates();
-    generateGoal();
     for (let rowIndex = 0;rowIndex < guessRows.length;rowIndex++){
         guessRows[rowIndex].classList.remove("current-row");
         if (rowIndex === 0){
             guessRows[rowIndex].classList.add("current-row");
         }
     }
+}
 
+
+function removeGuessCellColours(){
+    let guessCells = document.getElementsByClassName('guess-cell');
     for (let guessCell of guessCells){
         removeColors(guessCell);
     }
+}
+
+
+function removeKeyPegs() {
+    let guessOpinions = document.getElementsByClassName('opinion');
+    for (let guessOpinion of guessOpinions) {
+        removeColors(guessOpinion);
+    }
+}
+
+
+function hideGoalsTable() {
     let goalsTable = document.getElementById("goals");
     if (!goalsTable.classList.contains("hidden")){
         goalsTable.classList.add("hidden");
     }
+}
+
+
+function newGame(event){
+    removeKeyPegs();
+    removeUsedStates();
+    removeCurrentRowMarker();
+    removeGuessCellColours();
+    generateGoal();
+    hideGoalsTable();
 }
 
 function isWhiteKeyPagNecessary(guessGoal, currentColour){
@@ -80,7 +99,6 @@ function isWhiteKeyPagNecessary(guessGoal, currentColour){
 function isNotBlack(currentOpinion) {
    return !currentOpinion.classList.contains("black");
 }
-
 
 
 function addAllWhiteKeyPags(currentOpinion, guessGoals, currentColour){
@@ -155,33 +173,55 @@ function guessRow(event) {
 }
 
 
-function chooseColour(event) {
-    let colours = ["red", "blue", "yellow", "orange", "green", "violet"];
-    if(event.target.parentElement.classList.contains("current-row")) {
-        if (event.target.classList.contains("empty")) {
-            event.target.classList.remove("empty");
-            event.target.classList.add("red");
-            event.target.dataset.colourValue = "red";
+function isNotCurrent(event) {
+    return !(event.target.parentElement.classList.contains("current-row"));
+}
 
-        } else {
-            for (let index = 0; index < colours.length; index++) {
-                if (event.target.classList.contains("violet")) {
-                    event.target.classList.remove("violet");
-                    event.target.classList.add("red");
-                    event.target.dataset.colourValue = "red";
-                } else {
-                    if (event.target.classList.contains(colours[index])) {
-                        event.target.classList.remove(colours[index]);
-                        event.target.classList.add(colours[index + 1]);
-                        event.target.dataset.colourValue = colours[index + 1];
-                        break;
-                    }
-                }
+
+function isEmpty(event){
+    return event.target.classList.contains("empty");
+}
+
+
+function isViolet(event) {
+    return event.target.classList.contains("violet");
+}
+
+
+function chooseNextColour(event, colours, index) {
+    event.target.classList.remove(colours[index]);
+    event.target.classList.add(colours[index + 1]);
+    event.target.dataset.colourValue = colours[index + 1];
+}
+
+
+function chooseColour(event) {
+    if (isNotCurrent(event)){
+        return
+    }
+    if (isEmpty(event)){
+        chooseRed(event)
+    } else {
+        let colours = ["red", "blue", "yellow", "orange", "green", "violet"];
+        let index = colours.indexOf(event.target.dataset.colourValue);
+            if (isViolet(event)) {
+                chooseRed(event);
+            } else {
+                chooseNextColour(event, colours, index);
             }
         }
     }
-}
 
+function chooseRed(event) {
+    if (isViolet(event)) {
+        event.target.classList.remove("violet");
+    }
+    if (isEmpty(event)) {
+        event.target.classList.remove("empty");
+    }
+    event.target.classList.add("red");
+    event.target.dataset.colourValue = "red";
+}
 
 function addEventListenerToPlayBtn(){
     let playBtn = document.querySelector('#play-btn');
@@ -209,6 +249,7 @@ function main() {
     addEventListenerToPlayBtn();
     addEventListenerToGuestCells();
     addEventListenerToRetryBtn();
+    newGame();
 }
 
 
