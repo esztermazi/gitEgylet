@@ -1,18 +1,40 @@
 {% extends 'layout.html' %}
 
-{% block title %}Main menu{% endblock %}
+{% block title %}Welcome{% endblock %}
 
 {% block head %}
-<script src="{{ url_for('static', filename='js/menu.js') }}" defer></script>
 {% endblock %}
 
 
 {% block content %}
 <div class="container">
-    <h1>MasterMind</h1>
-    <h3>Main Menu</h3>
-    <a id="start-btn" href="{{ url_for('start_game') }}">Start</a><br>
-    <a id="score-btn" href="{{ url_for('high_score') }}">Score</a><br>
-    <button id="quit-btn">Quit</button>
+    <form id="registration" action="{{ url_for('registration') }}" method="post">
+         <h3>Registration</h3>
+        <label for="user-name">User Name: </label>
+        <input id="user-name" name="user-name" type="text" required>
+        <label for="password">Password: </label>
+        <input id="password" name="password" type="text" minlength="5" maxlength="15" required>
+        <label for="conf-password">Confirm password: </label>
+        <input id="conf-password" name="conf-password" type="text" minlength="5" maxlength="15" required>
+        <button id="sign-up-btn" type="submit">Sign up</button>
+        <p class="system-message">{{ message if message }}</p>
+    </form>
 </div>
+<div class="container">
+    <h1>Mastermind</h1>
+    <a href="{{ url_for('main_menu') }}">Play without registration</a>
+</div>
+
+
+<div class="container">
+    <form id="login">
+        <h3>Login</h3>
+        <label for="user-name">User Name: </label>
+        <input id="user-name" name="user-name" type="text" required>
+        <label for="password">Password: </label>
+        <input id="password" name="password" type="text" required>
+        <button id="log-in-btn" type="submit">Log in</button>
+    </form>
+</div>
+
 {% endblock %}
