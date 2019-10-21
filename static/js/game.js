@@ -243,8 +243,22 @@ function addEventListenerToRetryBtn() {
 }
 
 
+function generateBoard() {
+    const boardContainer = document.querySelector('#board-container');
+    const boardRowTemplate = document.querySelector('#game-board-row-template');
+    for(let index=0;index<12;index++){
+        const boardRowClone = document.importNode(boardRowTemplate.content, true);
+        if(index===0){
+            boardRowClone.querySelector('.guess-row').classList.add('current-row');
+        }
+        boardContainer.appendChild(boardRowClone);
+    }
+
+}
+
+
 function main() {
-    let rowIndex = parseInt(document.querySelector('tbody').dataset.actualRow);
+    generateBoard();
     generateGoal();
     addEventListenerToPlayBtn();
     addEventListenerToGuestCells();
