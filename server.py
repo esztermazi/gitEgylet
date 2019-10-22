@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, session, redirect
 import data_manager
 import util
 
 app = Flask(__name__)
+app.secret_key = b'_5#y2L"F4Q8z\n\xed]/'
 
 
 @app.route('/')
@@ -35,6 +36,23 @@ def registration():
                 data_manager.register_user(username, hash)
                 message = f'Successful registration as {username}'
                 return render_template('index.html', message=message)
+    return render_template('index.html')
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['to-login-user-name']
+        password = request.form['to-login-password']
+        alert_message = 'Invalid user name or password!'
+        if not data_manager.check_username(username):
+            return render_template('index.html', login_message=alert_message)
+        hashed_password = data_manager.get_hashed_password(username)
+        if not util.verify_password(password, hashed_password):
+            return render_template('index.html', login_message=alert_message)
+        session['username'] = username
+        session['user_id'] = data_manager.get_user_id_by_username(username)
+        return redirect(url_for('main_menu'))
     return render_template('index.html')
 
 

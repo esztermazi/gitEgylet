@@ -8,6 +8,9 @@
 
 
 {% block content %}
+    {% if session['username'] %}
+    <h4>Logged in as: {{ session['username'] }}</h4>
+    {% endif %}
 <div class="container">
     <h1 class="main-menu-title">MasterMind</h1>
     <h4>Main Menu</h4>

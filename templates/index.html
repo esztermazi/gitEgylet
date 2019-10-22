@@ -28,13 +28,14 @@
     </div>
 
     <div class="registration-container">
-        <form id="login">
+        <form id="login" action="{{ url_for('login') }}" method="post">
             <h3>Login</h3>
-            <label for="user-name">User Name: </label>
-            <input id="user-name" name="user-name" type="text" required>
-            <label for="password">Password: </label>
-            <input id="password" name="password" type="text" required>
+            <label for="to-login-user-name">User Name: </label>
+            <input id="to-login-user-name" name="to-login-user-name" type="text" required>
+            <label for="to-login-password">Password: </label>
+            <input id="to-login-password" name="to-login-password" type="text" required>
             <button id="log-in-btn" type="submit">Log in</button>
+            <p class="login-message">{{ login_message if login_message }}</p>
         </form>
     </div>
 

@@ -24,3 +24,43 @@ def validate_new_username(cursor, user_name):
     if result == None:
         return True
     return False
+
+
+@database_common.connection_handler
+def check_username(cursor, username):
+    cursor.execute("""
+                    SELECT user_name FROM users WHERE users.user_name = %(username)s
+                    """,
+                   {'username': username})
+    result = cursor.fetchone()
+    if result is None:
+        return None
+    else:
+        name = result['user_name'] == username
+        return name
+
+
+@database_common.connection_handler
+def get_hashed_password(cursor, username):
+    cursor.execute("""
+                    SELECT user_password FROM users WHERE users.user_name = %(username)s
+                    """,
+                   {'username': username})
+    result = cursor.fetchone()
+    if result is None:
+        return None
+    else:
+        password = result['user_password']
+        return password
+
+
+@database_common.connection_handler
+def get_user_id_by_username(cursor, username):
+    cursor.execute("""
+                    SELECT users.id
+                    FROM users
+                    WHERE user_name = %(username)s
+                    """,
+                   {'username': username})
+    user_id = cursor.fetchone()
+    return user_id['id']
