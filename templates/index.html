@@ -7,34 +7,35 @@
 
 
 {% block content %}
-<div class="container">
-    <form id="registration" action="{{ url_for('registration') }}" method="post">
-         <h3>Registration</h3>
-        <label for="user-name">User Name: </label>
-        <input id="user-name" name="user-name" type="text" required>
-        <label for="password">Password: </label>
-        <input id="password" name="password" type="text" minlength="5" maxlength="15" required>
-        <label for="conf-password">Confirm password: </label>
-        <input id="conf-password" name="conf-password" type="text" minlength="5" maxlength="15" required>
-        <button id="sign-up-btn" type="submit">Sign up</button>
-        <p class="system-message">{{ message if message }}</p>
-    </form>
-</div>
-<div class="container">
-    <h1>Mastermind</h1>
-    <a href="{{ url_for('main_menu') }}">Play without registration</a>
-</div>
+    <div class="registration-container">
+        <form id="registration" action="{{ url_for('registration') }}" method="post">
+            <h3>Registration</h3>
+            <label for="user-name">User Name: </label>
+            <input id="user-name" name="user-name" type="text" required>
+            <label for="password">Password: </label>
+            <input id="password" name="password" type="password" minlength="5" maxlength="15" required>
+            <label for="conf-password">Confirm password: </label>
+            <input id="conf-password" name="conf-password" type="password" minlength="5" maxlength="15" required>
+            <button id="sign-up-btn" type="submit">Sign up</button>
+            <p class="system-message">{{ message if message }}</p>
+        </form>
+    </div>
 
+    <div>
+        <h2>Welcome to</h2>
+        <h1>Mastermind</h1>
+        <a id="without-btn" href="{{ url_for('main_menu') }}">Play without registration</a>
+    </div>
 
-<div class="container">
-    <form id="login">
-        <h3>Login</h3>
-        <label for="user-name">User Name: </label>
-        <input id="user-name" name="user-name" type="text" required>
-        <label for="password">Password: </label>
-        <input id="password" name="password" type="text" required>
-        <button id="log-in-btn" type="submit">Log in</button>
-    </form>
-</div>
+    <div class="registration-container">
+        <form id="login">
+            <h3>Login</h3>
+            <label for="user-name">User Name: </label>
+            <input id="user-name" name="user-name" type="text" required>
+            <label for="password">Password: </label>
+            <input id="password" name="password" type="text" required>
+            <button id="log-in-btn" type="submit">Log in</button>
+        </form>
+    </div>
 
 {% endblock %}
