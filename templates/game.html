@@ -3,36 +3,39 @@
 {% block title %}Game{% endblock %}
 
 {% block head %}
-<script src="{{ url_for('static', filename='js/game.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/game.js') }}" defer></script>
 {% endblock %}
 
 
 {% block content %}
-<button id="retry-btn">↻ Retry</button><br>
-<div class = "container">
-    <table id="player_board">
-        <tbody id="board-container">
+    <div class="game-area">
+        <button id="retry-btn">↻ Retry</button>
+        <br>
+        <div class="container">
+            <table id="player_board">
+                <tbody id="board-container">
 
-        </tbody>
-    </table>
-    <br>
-    <button id="play-btn">►</button>
-</div>
-<br>
+                </tbody>
+            </table>
+            <br>
+            <button id="play-btn">►</button>
+        </div>
+        <br>
 
-<table id="goals" class="container hidden">
-    <tr>
-        <td class="goal-cell" data-goal-value="empty"></td>
-        <td class="goal-cell" data-goal-value="empty"></td>
-        <td class="goal-cell" data-goal-value="empty"></td>
-        <td class="goal-cell" data-goal-value="empty"></td>
-    </tr>
-</table>
-{% include 'game_board_row.html' %}
+        <table id="goals" class="container hidden">
+            <tr>
+                <td class="goal-cell" data-goal-value="empty"></td>
+                <td class="goal-cell" data-goal-value="empty"></td>
+                <td class="goal-cell" data-goal-value="empty"></td>
+                <td class="goal-cell" data-goal-value="empty"></td>
+            </tr>
+        </table>
+    {% include 'game_board_row.html' %}
+    </div>
 {% endblock %}
 
 
 {% block footer %}
-<a class ="back-btn" href="{{ url_for('main_menu')}}">⇐ Back to Main menu</a>
+    <a class="back-btn" href="{{ url_for('main_menu') }}">⇐ Back to Main menu</a>
 
 {% endblock %}
