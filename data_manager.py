@@ -1,6 +1,7 @@
 import database_common
 from psycopg2 import sql
 import util
+from flask import session
 
 @database_common.connection_handler
 def register_user(cursor, user_name, hash):
@@ -76,10 +77,18 @@ def add_score_by_user_id(cursor, user_id, score):
 
 @database_common.connection_handler
 def get_all_users_with_scores(cursor):
+    currentUser = session['username']
     cursor.execute("""
-                    SELECT score, user_name from scores
+                    SELECT score, user_name, 
+                    CASE
+                        WHEN %(currentUser)s=user_name THEN 'currentUser'
+                        ELSE 'otherUser'
+                    END AS userstatus
+                    from scores
                     JOIN users u on scores.user_id = u.id
                     ORDER BY score DESC
-                    """)
+                    """,
+                   {'currentUser': currentUser}
+                   )
     users = cursor.fetchall()
     return users

@@ -384,3 +384,7 @@ label {
 .score-data {
     font-size: 25px;
 }
+
+.currentUser {
+    background-color: blue;
+}
