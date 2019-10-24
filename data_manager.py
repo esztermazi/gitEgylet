@@ -64,3 +64,11 @@ def get_user_id_by_username(cursor, username):
                    {'username': username})
     user_id = cursor.fetchone()
     return user_id['id']
+
+@database_common.connection_handler
+def add_score_by_user_id(cursor, user_id, score):
+    cursor.execute("""
+                        INSERT INTO scores(user_id, score)
+                        VALUES (%(user_id)s, %(score)s)
+                            """,
+                   {'user_id': user_id, 'score': score})
