@@ -56,6 +56,12 @@ def login():
     return render_template('index.html')
 
 
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('index'))
+
+
 @app.route('/game')
 def start_game():
     return render_template('game.html')

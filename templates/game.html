@@ -9,8 +9,10 @@
 
 {% block content %}
     <div class="game-area">
+        {% if session['username'] %}
+            <h4>{{ session['username'] }}</h4>
+        {% endif %}
         <button id="retry-btn">↻ Retry</button>
-        <br>
         <div class="container">
             <table id="player_board">
                 <tbody id="board-container">
@@ -20,7 +22,6 @@
             <br>
             <button id="play-btn">►</button>
         </div>
-        <br>
 
         <table id="goals" class="container hidden">
             <tr>
@@ -30,7 +31,7 @@
                 <td class="goal-cell" data-goal-value="empty"></td>
             </tr>
         </table>
-    {% include 'game_board_row.html' %}
+        {% include 'game_board_row.html' %}
     </div>
 {% endblock %}
 

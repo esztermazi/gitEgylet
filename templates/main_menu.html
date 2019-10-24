@@ -3,24 +3,25 @@
 {% block title %}Main menu{% endblock %}
 
 {% block head %}
-<script src="{{ url_for('static', filename='js/menu.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/menu.js') }}" defer></script>
 {% endblock %}
 
-
 {% block content %}
-    {% if session['username'] %}
-    <h4>Logged in as: {{ session['username'] }}</h4>
-    {% endif %}
-<div class="container">
-    <h1 class="main-menu-title">MasterMind</h1>
-    <h4>Main Menu</h4>
-    <a id="start-btn" href="{{ url_for('start_game') }}">Start</a><br>
-    <a id="score-btn" href="{{ url_for('high_score') }}">Score</a><br>
-    <button id="quit-btn">Quit</button>
-</div>
+    <div class="container">
+        {% if session['username'] %}
+            <h4>Hi {{ session['username'] }}! Ready to be a</h4>
+        {% endif %}
+        <h1 class="main-menu-title">MasterMind ?</h1>
+        <h4>Main Menu</h4>
+        <a id="start-btn" href="{{ url_for('start_game') }}">Start</a>
+        <a id="score-btn" href="{{ url_for('high_score') }}">Score</a>
+        {% if session['username'] %}
+            <a id="quit-btn" href="{{ url_for('logout') }}">Logout</a>
+        {% endif %}
+    </div>
 {% endblock %}
 
 {% block footer %}
-<a class ="back-btn" href="{{ url_for('index')}}">⇐ Back to home page</a>
+    <a class="back-btn" href="{{ url_for('index') }}">⇐ Back to home page</a>
 
 {% endblock %}
