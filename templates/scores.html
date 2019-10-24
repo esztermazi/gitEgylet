@@ -4,9 +4,27 @@
 
 {% block head %}{% endblock %}
 
-{% block content %} {% endblock %}
+
+{% block content %}
+    <h4>High scores<br>
+    <table id="high-score-table">
+        <thead>
+        <th class="score-data">Name</th>
+        <th class="score-data">Score</th>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td class="score-data">{{ user.user_name }}</td>
+                <td class="score-data">{{ user.score }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
 
 
 {% block footer %}
-<a class ="back-btn" href="{{ url_for('index')}}">⇐ Back to game menu</a>
+    <a class="back-btn" href="{{ url_for('main_menu') }}">⇐ Back to main menu</a>
 {% endblock %}

@@ -352,3 +352,35 @@ label {
     justify-content: center;
     align-items: center;
 }
+
+#high-score-table {
+    border-collapse: collapse;
+    border: 1px solid grey;
+    border-radius: 7px;
+    height: 100%;
+    width: 100%;
+    border-radius: 7px;
+    vertical-align: center;
+    horiz-align: center;
+}
+
+#high-score-table th {
+    padding: 20px;
+}
+
+#high-score-table td {
+    padding: 5px;
+}
+
+#high-score-table thead {
+    background-color: darkorange;
+}
+
+#high-score-table tbody {
+    background-color: burlywood;
+}
+
+
+.score-data {
+    font-size: 25px;
+}

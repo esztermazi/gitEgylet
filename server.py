@@ -62,10 +62,14 @@ def logout():
     return redirect(url_for('index'))
 
 
-#@app.route('/insert-scores')
-#def insert_scores():
-    #username =
-    #return render_template('game.html')
+@app.route('/insert-scores', methods=['GET', 'POST'])
+def insert_scores():
+    data = request.get_json()
+    username = data['username']
+    score = data['score']
+    user_id = data_manager.get_user_id_by_username(username)
+    data_manager.add_score_by_user_id(user_id, score)
+    return ('', 204)
 
 
 @app.route('/game')
@@ -75,7 +79,9 @@ def start_game():
 
 @app.route('/high-score')
 def high_score():
-    return render_template('scores.html')
+    users_with_scores = data_manager.get_all_users_with_scores()
+    print(users_with_scores)
+    return render_template('scores.html', users=users_with_scores)
 
 
 if __name__ == '__main__':

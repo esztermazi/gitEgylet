@@ -72,3 +72,14 @@ def add_score_by_user_id(cursor, user_id, score):
                         VALUES (%(user_id)s, %(score)s)
                             """,
                    {'user_id': user_id, 'score': score})
+
+
+@database_common.connection_handler
+def get_all_users_with_scores(cursor):
+    cursor.execute("""
+                    SELECT score, user_name from scores
+                    JOIN users u on scores.user_id = u.id
+                    ORDER BY score DESC
+                    """)
+    users = cursor.fetchall()
+    return users

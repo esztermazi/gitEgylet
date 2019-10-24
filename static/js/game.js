@@ -41,12 +41,31 @@ function checkWin(guessOpinions) {
         } else {
             let playerName = document.querySelector('#player').dataset.playerName;
             alert(`Congratulations , ${playerName} won ${playerScore} points! :)`);
+            sendScoresToDatabase(playerName, playerScore);
         }
         document.getElementById("goals").classList.remove("hidden");
         return true;
     }
     return false;
 }
+
+
+function sendScoresToDatabase(username, score) {
+    data = {'username': username, 'score': score};
+    fetch(`/insert-scores`,{
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => {
+            if (response.status !== 204) {
+                alert("Process is unsuccessful!")
+            }
+        })
+}
+
 
 
 function removeUsedStates() {
