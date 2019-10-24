@@ -11,7 +11,9 @@
     <div class="game-area">
         <div id="user-container">
             {% if session['username'] %}
-                <h4>Player: {{ session['username'] }} </h4>
+                <h4 id="player" data-player-name="{{ session['username'] }}">Player: {{ session['username'] }} </h4>
+                {% else %}
+                <h4 id="player" data-player-name="unknown"></h4>
             {% endif %}
         <button id="retry-btn">↻ Retry</button>
         </div>

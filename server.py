@@ -62,10 +62,10 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route('/insert-scores')
-def insert_scores():
-    username =
-    return render_template('game.html')
+#@app.route('/insert-scores')
+#def insert_scores():
+    #username =
+    #return render_template('game.html')
 
 
 @app.route('/game')

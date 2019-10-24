@@ -1,33 +1,47 @@
 function removeColors(element) {
     let colours = ["red", "blue", "yellow", "orange", "green", "violet", "empty", "black", "white"];
-    for (colour of colours){
+    for (colour of colours) {
         element.classList.remove(colour);
-        element.dataset.colourValue="empty";
+        element.dataset.colourValue = "empty";
     }
     element.classList.add("empty");
 }
 
 
-function generateGoal(){
+function generateGoal() {
     let goalCells = document.getElementsByClassName('goal-cell');
     let colours = ["red", "blue", "yellow", "orange", "green", "violet"];
-    for (goalCell of goalCells){
+    for (goalCell of goalCells) {
         let randomColour = colours[Math.floor(Math.random() * 6)];
         goalCell.classList.add(randomColour);
-        goalCell.dataset.goalValue=randomColour;
+        goalCell.dataset.goalValue = randomColour;
     }
+}
+
+
+function setScore() {
+    let maxScore = 1000;
+    let currentRow = parseInt(document.querySelector('.current-row').dataset.rowNum);
+    let result = maxScore - currentRow * 50;
+    return result
 }
 
 
 function checkWin(guessOpinions) {
     counter = 0;
-    for (guessOpinion of guessOpinions){
-        if(guessOpinion.classList.contains("black")){
+    for (guessOpinion of guessOpinions) {
+        if (guessOpinion.classList.contains("black")) {
             counter++;
         }
     }
-    if (counter===4){
-        alert("You Won!");
+    if (counter === 4) {
+        let playerScore = setScore();
+        if (document.querySelector('#player').dataset.playerName === 'unknown') {
+            alert(`Congratulations , you won ${playerScore} points! :)`);
+        } else {
+            let playerName = document.querySelector('#player').dataset.playerName;
+            alert(`Congratulations , ${playerName} won ${playerScore} points! :)`);
+        }
         document.getElementById("goals").classList.remove("hidden");
         return true;
     }
@@ -35,9 +49,9 @@ function checkWin(guessOpinions) {
 }
 
 
-function removeUsedStates(){
+function removeUsedStates() {
     let guessGoals = document.getElementsByClassName('goal-cell');
-    for(let guessGoal of guessGoals) {
+    for (let guessGoal of guessGoals) {
         guessGoal.classList.remove("used");
         removeColors(guessGoal);
     }
@@ -46,18 +60,18 @@ function removeUsedStates(){
 
 function removeCurrentRowMarker() {
     let guessRows = document.getElementsByClassName('guess-row');
-    for (let rowIndex = 0;rowIndex < guessRows.length;rowIndex++){
+    for (let rowIndex = 0; rowIndex < guessRows.length; rowIndex++) {
         guessRows[rowIndex].classList.remove("current-row");
-        if (rowIndex === 0){
+        if (rowIndex === 0) {
             guessRows[rowIndex].classList.add("current-row");
         }
     }
 }
 
 
-function removeGuessCellColours(){
+function removeGuessCellColours() {
     let guessCells = document.getElementsByClassName('guess-cell');
-    for (let guessCell of guessCells){
+    for (let guessCell of guessCells) {
         removeColors(guessCell);
     }
 }
@@ -73,13 +87,13 @@ function removeKeyPegs() {
 
 function hideGoalsTable() {
     let goalsTable = document.getElementById("goals");
-    if (!goalsTable.classList.contains("hidden")){
+    if (!goalsTable.classList.contains("hidden")) {
         goalsTable.classList.add("hidden");
     }
 }
 
 
-function newGame(event){
+function newGame(event) {
     removeKeyPegs();
     removeUsedStates();
     removeCurrentRowMarker();
@@ -88,31 +102,31 @@ function newGame(event){
     hideGoalsTable();
 }
 
-function isWhiteKeyPagNecessary(guessGoal, currentColour){
-    if(!guessGoal.classList.contains("used")){
-        return  isMatchingColour(currentColour, guessGoal);
+function isWhiteKeyPagNecessary(guessGoal, currentColour) {
+    if (!guessGoal.classList.contains("used")) {
+        return isMatchingColour(currentColour, guessGoal);
     }
     return false;
 }
 
 
 function isNotBlack(currentOpinion) {
-   return !currentOpinion.classList.contains("black");
+    return !currentOpinion.classList.contains("black");
 }
 
 
-function addAllWhiteKeyPags(currentOpinion, guessGoals, currentColour){
-    if(isNotBlack(currentOpinion)) {
-        for (let goal_index=0; goal_index < guessGoals.length;goal_index++){
-            if (isWhiteKeyPagNecessary(guessGoals[goal_index], currentColour)){
-                    addWhiteKeyPag(currentOpinion, guessGoals[goal_index]);
-                }
+function addAllWhiteKeyPags(currentOpinion, guessGoals, currentColour) {
+    if (isNotBlack(currentOpinion)) {
+        for (let goal_index = 0; goal_index < guessGoals.length; goal_index++) {
+            if (isWhiteKeyPagNecessary(guessGoals[goal_index], currentColour)) {
+                addWhiteKeyPag(currentOpinion, guessGoals[goal_index]);
             }
         }
     }
+}
 
 
-function isMatchingColour(currentColour,  guessGoal){
+function isMatchingColour(currentColour, guessGoal) {
     return currentColour === guessGoal.dataset.goalValue;
 }
 
@@ -127,30 +141,30 @@ function addWhiteKeyPag(currentOpinion, guessGoal) {
 function guessRow(event) {
     let guessGoals = document.getElementsByClassName('goal-cell');
     let guessRows = document.getElementsByClassName('guess-row');
-    for (guessRow of guessRows){
+    for (guessRow of guessRows) {
         let guessOpinions = guessRow.getElementsByClassName('opinion');
         let guessCells = guessRow.getElementsByClassName('guess-cell');
-        for (let index=0; index < guessCells.length;index++) {
+        for (let index = 0; index < guessCells.length; index++) {
             let currentColour = guessCells[index].dataset.colourValue;
             let goalColour = guessGoals[index].dataset.goalValue;
             let currentOpinion = guessOpinions[index];
-            if(currentColour === goalColour){
+            if (currentColour === goalColour) {
                 currentOpinion.classList.remove("empty");
                 currentOpinion.classList.add("black");
                 guessGoals[parseInt(index)].classList.add("used");
             }
         }
-        for (let index=0; index < guessCells.length;index++){
+        for (let index = 0; index < guessCells.length; index++) {
             let currentColour = guessCells[index].dataset.colourValue;
             let currentOpinion = guessOpinions[index];
             addAllWhiteKeyPags(currentOpinion, guessGoals, currentColour);
         }
-        for (guessGoal of guessGoals){
+        for (guessGoal of guessGoals) {
             guessGoal.classList.remove("used");
         }
         let isWon = checkWin(guessOpinions);
-        if (isWon){
-            for (guessRow of guessRows){
+        if (isWon) {
+            for (guessRow of guessRows) {
                 guessRow.classList.remove("current-row");
             }
             return;
@@ -158,7 +172,7 @@ function guessRow(event) {
     }
 
     for (let checkRowIndex = 0; checkRowIndex < guessRows.length; checkRowIndex++) {
-        if (checkRowIndex === guessRows.length -1) {
+        if (checkRowIndex === guessRows.length - 1) {
             alert("you lose! :(");
             document.getElementById("goals").classList.remove("hidden");
             guessRows[checkRowIndex].classList.remove("current-row");
@@ -178,7 +192,7 @@ function isNotCurrent(event) {
 }
 
 
-function isEmpty(event){
+function isEmpty(event) {
     return event.target.classList.contains("empty");
 }
 
@@ -196,21 +210,21 @@ function chooseNextColour(event, colours, index) {
 
 
 function chooseColour(event) {
-    if (isNotCurrent(event)){
+    if (isNotCurrent(event)) {
         return
     }
-    if (isEmpty(event)){
+    if (isEmpty(event)) {
         chooseRed(event)
     } else {
         let colours = ["red", "blue", "yellow", "orange", "green", "violet"];
         let index = colours.indexOf(event.target.dataset.colourValue);
-            if (isViolet(event)) {
-                chooseRed(event);
-            } else {
-                chooseNextColour(event, colours, index);
-            }
+        if (isViolet(event)) {
+            chooseRed(event);
+        } else {
+            chooseNextColour(event, colours, index);
         }
     }
+}
 
 function chooseRed(event) {
     if (isViolet(event)) {
@@ -223,7 +237,7 @@ function chooseRed(event) {
     event.target.dataset.colourValue = "red";
 }
 
-function addEventListenerToPlayBtn(){
+function addEventListenerToPlayBtn() {
     let playBtn = document.querySelector('#play-btn');
     playBtn.addEventListener('click', guessRow);
 }
@@ -246,14 +260,14 @@ function addEventListenerToRetryBtn() {
 function generateBoard() {
     const boardContainer = document.querySelector('#board-container');
     const boardRowTemplate = document.querySelector('#game-board-row-template');
-    for(let index=0;index<12;index++){
+    for (let index = 0; index < 12; index++) {
         const boardRowClone = document.importNode(boardRowTemplate.content, true);
-        if(index===0){
+        boardRowClone.querySelector('tr').dataset.rowNum = `${index}`;
+        if (index === 0) {
             boardRowClone.querySelector('.guess-row').classList.add('current-row');
         }
         boardContainer.appendChild(boardRowClone);
     }
-
 }
 
 
