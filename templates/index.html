@@ -7,6 +7,7 @@
 
 
 {% block content %}
+    {% if not session['username'] %}
     <div class="registration-container">
         <form id="registration" action="{{ url_for('registration') }}" method="post">
             <h3>Registration</h3>
@@ -20,12 +21,18 @@
             <p class="system-message">{{ message if message }}</p>
         </form>
     </div>
-
+    {% endif %}
     <div>
         <h2>Welcome to</h2>
         <h1>Mastermind</h1>
+        {% if not session['username'] %}
         <a id="without-btn" href="{{ url_for('main_menu') }}">Play without registration</a>
+        {% endif %}
+        {% if session['username'] %}
+            <a id="without-btn" href="{{ url_for('main_menu') }}">Play as {{ session['username'] }}</a>
+        {% endif %}
     </div>
+            {% if not session['username'] %}
 
     <div class="registration-container">
         <form id="login" action="{{ url_for('login') }}" method="post">
@@ -38,5 +45,5 @@
             <p class="login-message">{{ login_message if login_message }}</p>
         </form>
     </div>
-
+    {% endif %}
 {% endblock %}

@@ -9,10 +9,12 @@
 
 {% block content %}
     <div class="game-area">
-        {% if session['username'] %}
-            <h4>{{ session['username'] }}</h4>
-        {% endif %}
+        <div id="user-container">
+            {% if session['username'] %}
+                <h4>Player: {{ session['username'] }} </h4>
+            {% endif %}
         <button id="retry-btn">↻ Retry</button>
+        </div>
         <div class="container">
             <table id="player_board">
                 <tbody id="board-container">
@@ -35,8 +37,7 @@
     </div>
 {% endblock %}
 
-
 {% block footer %}
-    <a class="back-btn" href="{{ url_for('main_menu') }}">⇐ Back to Main menu</a>
 
+    <a class="back-btn" href="{{ url_for('main_menu') }}">⇐ Back to Main menu</a>
 {% endblock %}

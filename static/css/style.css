@@ -83,7 +83,7 @@ a, #retry-btn, #sign-up-btn, #log-in-btn {
 }
 
 
-#start-btn:hover, #score-btn:hover, #quit-btn:hover, .back-btn:hover, #retry-btn:hover, #without-btn:hover, #sign-up-btn:hover, #log-in-btn:hover {
+#start-btn:hover, #score-btn:hover, .logout-btn:hover, .back-btn:hover, #retry-btn:hover, #without-btn:hover, #sign-up-btn:hover, #log-in-btn:hover {
     background-color: black;
     font-weight: bold;
 }
@@ -139,7 +139,7 @@ a, #retry-btn, #sign-up-btn, #log-in-btn {
 }
 
 
-#quit-btn {
+.logout-btn {
     background-color: #9C1A1C;
     font-family: Chilanka;
     border-style: solid;
@@ -149,13 +149,13 @@ a, #retry-btn, #sign-up-btn, #log-in-btn {
     color: black;
     display: inline-block;
     margin: 10px;
-    padding: 40px;
+    padding: 30px;
     box-shadow: -11px 12px 7px -8px rgba(0, 0, 0, 0.75);
     font-size: 40px;
 }
 
 
-#quit-btn:hover {
+.logout-btn:hover {
     color: #9C1A1C;
 }
 
@@ -322,6 +322,7 @@ footer {
     bottom: 10px;
     align-items: center;
     justify-content: center;
+    display: inline-flex;
 }
 
 
@@ -344,4 +345,10 @@ label {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+#user-container {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 }
